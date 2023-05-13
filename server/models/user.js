@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Item)
     }
   }
   User.init({
@@ -20,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     role: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate(user, options){
+        user.image = "https://via.placeholder.com/150"
+      }
+    },
     sequelize,
     modelName: 'User',
   });
