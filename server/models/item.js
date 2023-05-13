@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       validate: {
-        isNull : {
+        notEmpty : {
           message: "Name cannot be null"
         }
       }
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     category: {
       type: DataTypes.STRING,
       validate: {
-        isNull : {
+        notEmpty : {
           message: "Category cannot be null"
         }
       }
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.STRING,
       validate: {
-        isNull : {
+        notEmpty : {
           message: "Price cannot be null"
         },
         isNumeric: {
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     stock: {
       type: DataTypes.STRING,
       validate: {
-        isNull : {
+        notEmpty : {
           message: "Stock cannot be null"
         },
         isNumeric: {
@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING,
       validate: {
-        isNull : {
+        notEmpty : {
           message: "Image cannot be null"
         }
       }
