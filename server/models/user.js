@@ -24,7 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       hooks: {
         beforeCreate(user, options) {
-          user.image = "https://via.placeholder.com/150";
+          user.image =
+            "https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg";
+
+          // user.image = "https://via.placeholder.com/150";
           user.password = encryptPwd(user.password);
         },
       },
