@@ -16,7 +16,9 @@ class ItemController {
   static async create(req, res) {
     //
     try {
-      const { name, category, price, stock, image, UserId } = req.body;
+      const UserId = +req.userData.id
+
+      const { name, category, price, stock, image,  } = req.body;
       let result = await Item.create({
         name,
         category,

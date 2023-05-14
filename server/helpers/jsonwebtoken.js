@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 const secretCode = process.env.SECRET_CODE || 'bebas'
 
 const tokenGenerator = (data) => {
-    const { id, username, email, image, age } = data
+    const { id, username, email, image, role } = data
     return jwt.sign({
-        id, username, email, image, age
+        id, username, email, image, role
     }, secretCode)
 }
 
