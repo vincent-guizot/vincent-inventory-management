@@ -12,7 +12,15 @@ import MainContent from "./components/MainContent";
 import Login from "./pages/Login";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
