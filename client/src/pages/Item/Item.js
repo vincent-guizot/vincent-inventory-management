@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import {MdArticle, MdDelete} from 'react-icons/md'
+
+import { Link } from "react-router-dom";
+import { MdArticle, MdDelete } from "react-icons/md";
 
 const Item = () => {
   const [items, setItems] = useState([]);
@@ -31,14 +33,47 @@ const Item = () => {
     // );
   };
 
+  const deleteHandler = async id => {
+    try {
+      Swal.fire({
+        title: 'Do you want to delete?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios({
+            method: "delete",
+            url: `http://localhost:3000/items/delete/${id}`
+          })
+          getAllItems()
+          Swal.fire(
+            'Deleted!',
+            'Your item has been deleted.',
+            'success'
+          )
+        }
+      })
+
+    }  catch(err){
+      alert(err)
+    }
+  }
+
   useEffect(() => {
     getAllItems();
   }, []);
 
   return (
     <>
-      <div className="text-center w-100 p-3">
+      <div className="text-center w-100 p-3 d-flex flex-row justify-content-between">
         <h3>Item Pages</h3>
+        <Link className="btn btn-sm btn-primary" to="create">
+          + Create User
+        </Link>
       </div>
       <div className="w-100">
         <table className="table table-bordered table-hover">
@@ -70,7 +105,15 @@ const Item = () => {
                           onClick={() => descriptionHandler(id)}
                           className="btn btn-sm btn-info"
                         >
-                           <MdArticle className="me-2"/>Description
+                          <MdArticle className="me-2" />
+                          Description
+                        </button>
+
+                        <button
+                        onClick={() => deleteHandler(id)}
+                        className="btn btn-m btn-danger">
+
+                          <MdDelete className="me-2"/> Delete
                         </button>
                       </div>
                     </div>

@@ -1,7 +1,13 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const MenuBar = () => {
+
+  const logoutHandler = () => {
+    localStorage.clear()
+  }
+
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -21,7 +27,7 @@ const MenuBar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/">
                   Home
@@ -36,6 +42,16 @@ const MenuBar = () => {
                 <Link className="nav-link" to="/items">
                   Items
                 </Link>
+              </li>
+            </ul>
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <button
+                  onClick={() => logoutHandler()}
+                  className="btn btn-sm btn-outline-danger"
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
